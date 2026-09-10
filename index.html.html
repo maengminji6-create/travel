@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>경주 2박 3일 낭만 & 스릴 여행 가이드</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Pretentard / Noto Sans KR -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Noto Sans KR"', 'sans-serif'],
+            display: ['"Outfit"', '"Noto Sans KR"', 'sans-serif']
+          },
+          colors: {
+            gyeongju: {
+              gold: '#D99B26',
+              brick: '#8B4513',
+              dark: '#1A1817',
+              cream: '#FAF7F2',
+              slate: '#2C3E50',
+              accent: '#E74C3C',
+              night: '#0F172A'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background-color: #F8F6F0;
+      color: #2D3748;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 4px;
+    }
+    .hero-bg {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(30, 41, 59, 0.75) 100%), 
+                  url('https://images.unsplash.com/photo-1590674899484-d5640e854abe?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased">
+
+  <!-- Top Navigation -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-stone-200 shadow-sm transition-all">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <span class="w-9 h-9 rounded-xl bg-amber-600 text-white flex items-center justify-center font-bold text-lg shadow-md shadow-amber-600/20">
+          <i class="fa-solid fa-mountain-sun"></i>
+        </span>
+        <div>
+          <span class="text-xs font-semibold uppercase tracking-wider text-amber-600 block">Gyeongju 3-Day Trip</span>
+          <h1 class="text-lg sm:text-xl font-bold text-stone-900 tracking-tight leading-none">천년고도 & 경주월드 2박3일</h1>
+        </div>
+      </div>
+      <div class="flex items-center gap-2 sm:gap-3">
+        <button onclick="copyItinerary()" class="text-xs sm:text-sm font-medium px-3.5 py-2 rounded-lg bg-stone-100 hover:bg-stone-200 text-stone-700 transition flex items-center gap-1.5 active:scale-95">
+          <i class="fa-regular fa-copy"></i>
+          <span class="hidden sm:inline">일정</span> 복사
+        </button>
+        <button onclick="scrollToSection('checklist-section')" class="text-xs sm:text-sm font-semibold px-4 py-2 rounded-lg bg-amber-600 hover:bg-amber-700 text-white transition flex items-center gap-1.5 shadow-sm shadow-amber-600/20 active:scale-95">
+          <i class="fa-solid fa-clipboard-check"></i>
+          <span>체크리스트</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-bg text-white py-12 sm:py-20 px-4 sm:px-6 relative overflow-hidden">
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/20 border border-amber-400/30 text-amber-300 text-xs sm:text-sm font-medium mb-4 backdrop-blur-sm">
+        <i class="fa-solid fa-wand-magic-sparkles"></i> 2박 3일 황금 코스 (역사 + 감성 + 익스트림 스릴)
+      </div>
+      <h2 class="text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-4 leading-snug">
+        천년의 밤 야경부터 <br class="sm:hidden">
+        <span class="text-amber-400 underline decoration-amber-500/50 underline-offset-8">경주월드 90도 수직낙하</span>까지
+      </h2>
+      <p class="text-stone-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed mb-8">
+        황리단길 트렌디 맛집, 동궁과 월지의 몽환적 야경, 그리고 국내 최고 익스트림 롤러코스터 드라켄(Draken)까지 알차게 담은 실전 여행 플랜입니다.
+      </p>
+
+      <!-- Quick Metrics Summary -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 max-w-3xl mx-auto text-stone-100">
+        <div class="bg-white/10 backdrop-blur-md p-3.5 rounded-xl border border-white/10 text-center">
+          <p class="text-xs text-stone-300">여행 기간</p>
+          <p class="text-base sm:text-lg font-bold text-amber-300">2박 3일</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-md p-3.5 rounded-xl border border-white/10 text-center">
+          <p class="text-xs text-stone-300">핵심 스팟</p>
+          <p class="text-base sm:text-lg font-bold text-amber-300">경주월드 All-Day</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-md p-3.5 rounded-xl border border-white/10 text-center">
+          <p class="text-xs text-stone-300">추천 숙소</p>
+          <p class="text-base sm:text-lg font-bold text-amber-300">보문단지 / 황리단길</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-md p-3.5 rounded-xl border border-white/10 text-center">
+          <p class="text-xs text-stone-300">주요 테마</p>
+          <p class="text-base sm:text-lg font-bold text-amber-300">어트랙션 & 야경</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tab Navigation -->
+  <nav class="sticky top-[61px] z-30 bg-stone-100/95 backdrop-blur-md border-b border-stone-300 shadow-sm">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 flex overflow-x-auto custom-scrollbar space-x-2 py-2.5">
+      <button onclick="switchTab('day1')" id="tab-btn-day1" class="tab-btn active-tab px-4 py-2 rounded-lg text-sm font-semibold whitespace-nowrap transition flex items-center gap-2 bg-amber-600 text-white shadow-sm">
+        <i class="fa-solid fa-calendar-day"></i> 1일차: 황리단길 & 야경
+      </button>
+      <button onclick="switchTab('day2')" id="tab-btn-day2" class="tab-btn px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition flex items-center gap-2 bg-white text-stone-700 hover:bg-stone-200">
+        <i class="fa-solid fa-bolt text-red-500"></i> 2일차: 경주월드 정복
+      </button>
+      <button onclick="switchTab('day3')" id="tab-btn-day3" class="tab-btn px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition flex items-center gap-2 bg-white text-stone-700 hover:bg-stone-200">
+        <i class="fa-solid fa-landmark"></i> 3일차: 불국사 & 힐링
+      </button>
+      <button onclick="switchTab('world-guide')" id="tab-btn-world-guide" class="tab-btn px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition flex items-center gap-2 bg-white text-stone-700 hover:bg-stone-200">
+        <i class="fa-solid fa-flag-checkered text-amber-500"></i> 경주월드 공략팁
+      </button>
+      <button onclick="switchTab('budget-info')" id="tab-btn-budget-info" class="tab-btn px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition flex items-center gap-2 bg-white text-stone-700 hover:bg-stone-200">
+        <i class="fa-solid fa-wallet"></i> 예상 예산
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main Content Container -->
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-8 flex-1 w-full">
+
+    <!-- DAY 1 SECTION -->
+    <div id="content-day1" class="tab-content block space-y-6">
+      <div class="bg-amber-50/80 border border-amber-200 rounded-2xl p-4 sm:p-5 flex items-start gap-4">
+        <div class="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center font-bold shrink-0 text-lg">
+          01
+        </div>
+        <div>
+          <h3 class="text-base sm:text-lg font-bold text-stone-900">경주 도착 & 천년 고도의 감성과 낭만 야경 투어</h3>
+          <p class="text-xs sm:text-sm text-stone-600 mt-1 leading-relaxed">
+            KTX 신경주역 또는 버스터미널에 도착하여 황리단길에서 트렌디한 점심을 즐기고, 대릉원 산책 후 경주 최고의 자랑인 동궁과 월지, 월정교 야경을 감상합니다.
+          </p>
+        </div>
+      </div>
+
+      <!-- Timeline Items -->
+      <div class="relative border-l-2 border-stone-200 ml-4 sm:ml-6 space-y-8 pl-6 sm:pl-8 py-2">
+        
+        <!-- Spot 1 -->
+        <div class="relative group">
+          <span class="absolute -left-[35px] sm:-left-[43px] top-1.5 w-6 h-6 rounded-full bg-amber-500 border-4 border-stone-100 flex items-center justify-center text-[10px] text-white font-bold">1</span>
+          <div class="bg-white rounded-xl p-5 border border-stone-200 shadow-sm hover:shadow-md transition">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <span class="text-xs font-semibold px-2.5 py-1 rounded bg-stone-100 text-stone-600">11:30 - 13:00</span>
+              <span class="text-xs font-bold text-amber-700 bg-amber-100/70 px-2 py-0.5 rounded">점심 & 산책</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-bold text-stone-900 flex items-center gap-2">
+              황리단길 도착 & 감성 점심 식사
+            </h4>
+            <p class="text-sm text-stone-600 mt-1.5 leading-relaxed">
+              한옥을 개조한 맛집과 트렌디한 카페가 즐비한 거리. 경주 명물 <strong>경주 십원빵</strong>, <strong>황남쫀드기</strong> 등 이색 간식과 함께 갈비찜, 온천집 샤브샤브, 료미 등 취향에 맞는 맛집을 방문하세요.
+            </p>
+            <div class="mt-3 flex flex-wrap gap-2 text-xs text-stone-500">
+              <span class="bg-stone-50 px-2 py-1 rounded border border-stone-200">💡 Tip: 주말 황리단길 공영주차장은 매우 혼잡하므로 대중교통 이용 권장</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spot 2 -->
+        <div class="relative group">
+          <span class="absolute -left-[35px] sm:-left-[43px] top-1.5 w-6 h-6 rounded-full bg-stone-600 border-4 border-stone-100 flex items-center justify-center text-[10px] text-white font-bold">2</span>
+          <div class="bg-white rounded-xl p-5 border border-stone-200 shadow-sm hover:shadow-md transition">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <span class="text-xs font-semibold px-2.5 py-1 rounded bg-stone-100 text-stone-600">13:30 - 15:30</span>
+              <span class="text-xs font-bold text-emerald-700 bg-emerald-100/70 px-2 py-0.5 rounded">역사 & 포토존</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-bold text-stone-900">
+              대릉원 (천마총) & 목련나무 포토존
+            </h4>
+            <p class="text-sm text-stone-600 mt-1.5 leading-relaxed">
+              신라 왕과 귀족들의 무덤이 거대한 언덕처럼 모여 있는 고분군입니다. 내부를 직접 둘러볼 수 있는 천마총과 두 고분 사이에 서 있는 유명한 목련나무 포토존에서 인생샷을 남겨보세요. (대릉원 무료입장 / 천마총 별도 관람료)
+            </p>
+          </div>
+        </div>
+
+        <!-- Spot 3 -->
+        <div class="relative group">
+          <span class="absolute -left-[35px] sm:-left-[43px] top-1.5 w-6 h-6 rounded-full bg-stone-600 border-4 border-stone-100 flex items-center justify-center text-[10px] text-white font-bold">3</span>
+          <div class="bg-white rounded-xl p-5 border border-stone-200 shadow-sm hover:shadow-md transition">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <span class="text-xs font-semibold px-2.5 py-1 rounded bg-stone-100 text-stone-600">16:00 - 17:30</span>
+              <span class="text-xs font-bold text-blue-700 bg-blue-100/70 px-2 py-0.5 rounded">유네스코 유산</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-bold text-stone-900">
+              첨성대 & 계림 숲길 걷기
+            </h4>
+            <p class="text-sm text-stone-600 mt-1.5 leading-relaxed">
+              동양에서 가장 오래된 천문대인 첨성대를 관람하고, 바로 옆 비단벌레차 코스로 이어지는 계림 숲길을 따라 여유롭게 걸어봅니다. 계절별로 핑크뮬리, 해바라기, 백일홍 단지가 조성되어 있어 사진 찍기 좋습니다.
+            </p>
+          </div>
+        </div>
+
+        <!-- Spot 4 -->
+        <div class="relative group">
+          <span class="absolute -left-[35px] sm:-left-[43px] top-1.5 w-6 h-6 rounded-full bg-amber-600 border-4 border-stone-100 flex items-center justify-center text-[10px] text-white font-bold">4</span>
+          <div class="bg-white rounded-xl p-5 border border-stone-200 shadow-sm hover:shadow-md transition border-l-4 border-l-amber-500">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <span class="text-xs font-semibold px-2.5 py-1 rounded bg-stone-100 text-stone-600">18:30 - 21:00</span>
+              <span class="text-xs font-bold text-purple-700 bg-purple-100/70 px-2 py-0.5 rounded">⭐ 하이라이트 야경</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-bold text-stone-900">
+              동궁과 월지(안압지) & 월정교 야경 감상
+            </h4>
+            <p class="text-sm text-stone-600 mt-1.5 leading-relaxed">
+              경주 여행의 정점! 해 질 무렵 조명이 켜지며 연못에 반사되는 동궁과 월지의 반영은 환상적입니다. 이어서 남천 위를 가로지르는 웅장한 목조 교량 월정교의 야경까지 감상하고 보문단지 숙소로 이동합니다.
+            </p>
+            <div class="mt-3 bg-amber-50/50 p-2.5 rounded-lg text-xs text-amber-800">
+              📌 <strong>저녁 추천:</strong> 교촌마을 인근 쌈밥 거리 또는 황리단길 야간 펍 & 막걸리 한잔
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- DAY 2 SECTION (GYEONGJU WORLD DAY) -->
+    <div id="content-day2" class="tab-content hidden space-y-6">
+      <div class="bg-gradient-to-r from-red-500 to-amber-600 text-white rounded-2xl p-5 shadow-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <div class="inline-flex items-center gap-1.5 bg-white/20 px-2.5 py-1 rounded text-xs font-semibold uppercase tracking-wider mb-2">
+            <i class="fa-solid fa-fire"></i> Must-Visit Spotlight
+          </div>
+          <h3 class="text-xl sm:text-2xl font-black">2일차: 온종일 '경주월드' 익스트림 데이!</h3>
+          <p class="text-sm text-stone-100 mt-1 max-w-xl">
+            국내 유일 63m 수직낙하 '드라켄'과 360도 공중회전 '크라크' 등 스릴 어트랙션이 가득한 테마파크 완전 정복의 날입니다.
+          </p>
+        </div>
+        <button onclick="switchTab('world-guide')" class="bg-white text-stone-900 hover:bg-stone-100 text-xs sm:text-sm font-bold px-4 py-2.5 rounded-xl shadow-md transition whitespace-nowrap active:scale-95">
+          놀이기구 상세 공략 ➜
+        </button>
+      </div>
+
+      <!-- Schedule Breakdown -->
+      <div class="relative border-l-2 border-stone-200 ml-4 sm:ml-6 space-y-8 pl-6 sm:pl-8 py-2">
+        
+        <!-- Spot 1 -->
+        <div class="relative group">
+          <span class="absolute -left-[35px] sm:-left-[43px] top-1.5 w-6 h-6 rounded-full bg-stone-600 border-4 border-stone-100 flex items-center justify-center text-[10px] text-white font-bold">1</span>
+          <div class="bg-white rounded-xl p-5 border border-stone-200 shadow-sm hover:shadow-md transition">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <span class="text-xs font-semibold px-2.5 py-1 rounded bg-stone-100 text-stone-600">09:40 - 10:00</span>
+              <span class="text-xs font-bold text-rose-700 bg-rose-100/70 px-2 py-0.5 rounded">오픈런(Open Run)</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-bold text-stone-900">
+              경주월드 도착 & 모바일 티켓 발권
+            </h4>
+            <p class="text-sm text-stone-600 mt-1.5 leading-relaxed">
+              개장 시간(보통 오전 10:00) 20~30분 전 도착을 강력 추천합니다. 온라인 스마트 예약 바코드를 미리 준비하여 입장하자마자 <strong>드라켄밸리</strong>로 직진하는 것이 대기 시간을 1~2시간 절약하는 핵심 비결입니다!
+            </p>
+          </div>
+        </div>
+
+        <!-- Spot 2 -->
+        <div class="relative group">
+          <span class="absolute -left-[35px] sm:-left-[43px] top-1.5 w-6 h-6 rounded-full bg-red-600 border-4 border-stone-100 flex items-center justify-center text-[10px] text-white font-bold">2</span>
+          <div class="bg-white rounded-xl p-5 border border-red-200 shadow-sm hover:shadow-md transition bg-red-50/20">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <span class="text-xs font-semibold px-2.5 py-1 rounded bg-stone-100 text-stone-600">10:00 - 13:00</span>
+              <span class="text-xs font-bold text-red-600 bg-red-100 px-2 py-0.5 rounded">⚡ 3대 대장 어트랙션 공략</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-bold text-stone-900">
+              드라켄밸리 집중 공략 (드라켄 ➔ 크라크 ➔ 파에톤)
+            </h4>
+            <div class="space-y-2.5 mt-3 text-sm text-stone-700">
+              <div class="p-2.5 bg-white rounded-lg border border-stone-200">
+                <span class="font-bold text-red-600">1. 드라켄(Draken):</span> 시속 117km, 지상 63m에서 90도 수직 다이브 코스터! (최우선 탑승)
+              </div>
+              <div class="p-2.5 bg-white rounded-lg border border-stone-200">
+                <span class="font-bold text-amber-600">2. 크라크(Klake):</span> 거대한 원형 기구가 360도로 회전하며 거꾸로 매달리는 극강의 어지러움과 짜릿함!
+              </div>
+              <div class="p-2.5 bg-white rounded-lg border border-stone-200">
+                <span class="font-bold text-blue-600">3. 파에톤(Phaethon):</span> 발판 없이 매달려 레일을 질주하는 인버티드 롤러코스터!
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spot 3 -->
+        <div class="relative group">
+          <span class="absolute -left-[35px] sm:-left-[43px] top-1.5 w-6 h-6 rounded-full bg-stone-600 border-4 border-stone-100 flex items-center justify-center text-[10px] text-white font-bold">3</span>
+          <div class="bg-white rounded-xl p-5 border border-stone-200 shadow-sm hover:shadow-md transition">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <span class="text-xs font-semibold px-2.5 py-1 rounded bg-stone-100 text-stone-600">13:00 - 14:00</span>
+              <span class="text-xs font-bold text-amber-700 bg-amber-100/70 px-2 py-0.5 rounded">에너지 충전</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-bold text-stone-900">파크 내 푸드코트 점심 식사 & 휴식</h4>
+            <p class="text-sm text-stone-600 mt-1.5 leading-relaxed">
+              격렬한 롤러코스터 탑승 후 지친 체력을 보충할 시간. 파크 내 츄러스, 핫도그, 떡볶이, 돈가스 및 커피 등으로 간단히 허기를 채우고 휴식을 취합니다.
+            </p>
+          </div>
+        </div>
+
+        <!-- Spot 4 -->
+        <div class="relative group">
+          <span class="absolute -left-[35px] sm:-left-[43px] top-1.5 w-6 h-6 rounded-full bg-stone-600 border-4 border-stone-100 flex items-center justify-center text-[10px] text-white font-bold">4</span>
+          <div class="bg-white rounded-xl p-5 border border-stone-200 shadow-sm hover:shadow-md transition">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <span class="text-xs font-semibold px-2.5 py-1 rounded bg-stone-100 text-stone-600">14:00 - 17:30</span>
+              <span class="text-xs font-bold text-cyan-700 bg-cyan-100/70 px-2 py-0.5 rounded">워터 & 패밀리 라이드</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-bold text-stone-900">
+              그랜드캐년 탐험 & 섬머린스플래쉬 & 메가드롭
+            </h4>
+            <p class="text-sm text-stone-600 mt-1.5 leading-relaxed">
+              우비가 필수인 수상 롤러코스터 <strong>섬머린스플래쉬</strong>(초대형 물폭풍!)와 래프팅형 어트랙션 <strong>그랜드캐년 대탐험</strong>, 그리고 순간 낙하의 스릴 <strong>메가드롭</strong> 및 <strong>토네이도</strong>를 공략합니다.
+            </p>
+            <div class="mt-2 text-xs text-stone-500 bg-stone-50 p-2 rounded">
+              ⚠️ 섬머린스플래쉬는 옷이 완전히 젖을 수 있으므로 우비(파크 내 구매 가능 2,000~3,000원) 및 여벌 양말 필수!
+            </div>
+          </div>
+        </div>
+
+        <!-- Spot 5 -->
+        <div class="relative group">
+          <span class="absolute -left-[35px] sm:-left-[43px] top-1.5 w-6 h-6 rounded-full bg-stone-600 border-4 border-stone-100 flex items-center justify-center text-[10px] text-white font-bold">5</span>
+          <div class="bg-white rounded-xl p-5 border border-stone-200 shadow-sm hover:shadow-md transition">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <span class="text-xs font-semibold px-2.5 py-1 rounded bg-stone-100 text-stone-600">18:30 - 20:30</span>
+              <span class="text-xs font-bold text-stone-700 bg-stone-200 px-2 py-0.5 rounded">보문단지 만찬</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-bold text-stone-900">
+              보문호반길 저녁 & 한우물회 / 떡갈비 정식
+            </h4>
+            <p class="text-sm text-stone-600 mt-1.5 leading-relaxed">
+              경주월드 바로 앞 보문단지 먹거리 촌에서 경주 시그니처 메뉴인 <strong>한우물회(함양집 등)</strong> 또는 <strong>경주 떡갈비 정식</strong>으로 든든하게 저녁을 먹고, 보문호수의 잔잔한 야경 산책로를 걸으며 피로를 풉니다.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- DAY 3 SECTION -->
+    <div id="content-day3" class="tab-content hidden space-y-6">
+      <div class="bg-emerald-50/80 border border-emerald-200 rounded-2xl p-4 sm:p-5 flex items-start gap-4">
+        <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold shrink-0 text-lg">
+          03
+        </div>
+        <div>
+          <h3 class="text-base sm:text-lg font-bold text-stone-900">불국사 & 석굴암 힐링 및 기념품 쇼핑</h3>
+          <p class="text-xs sm:text-sm text-stone-600 mt-1 leading-relaxed">
+            전날의 액티비티 피로를 맑은 숲속 사찰의 기운으로 정화하고, 전통 먹거리와 기념품을 챙겨 귀가하는 일정입니다.
+          </p>
+        </div>
+      </div>
+
+      <div class="relative border-l-2 border-stone-200 ml-4 sm:ml-6 space-y-8 pl-6 sm:pl-8 py-2">
+        
+        <!-- Spot 1 -->
+        <div class="relative group">
+          <span class="absolute -left-[35px] sm:-left-[43px] top-1.5 w-6 h-6 rounded-full bg-emerald-600 border-4 border-stone-100 flex items-center justify-center text-[10px] text-white font-bold">1</span>
+          <div class="bg-white rounded-xl p-5 border border-stone-200 shadow-sm hover:shadow-md transition">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <span class="text-xs font-semibold px-2.5 py-1 rounded bg-stone-100 text-stone-600">09:30 - 11:30</span>
+              <span class="text-xs font-bold text-emerald-700 bg-emerald-100/70 px-2 py-0.5 rounded">유네스코 세계유산</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-bold text-stone-900">
+              불국사 (다보탑, 석가탑, 청운교·백운교)
+            </h4>
+            <p class="text-sm text-stone-600 mt-1.5 leading-relaxed">
+              신라 불교 예술의 최고봉. 교과서에서 보던 다보탑과 석가탑(석가여래상주설법탑), 극락전 복돼지 조각을 찾아 만져보고 행운을 기원해 보세요. 아침 일찍 방문하면 한적하고 맑은 숲 내음을 즐길 수 있습니다.
+            </p>
+          </div>
+        </div>
+
+        <!-- Spot 2 -->
+        <div class="relative group">
+          <span class="absolute -left-[35px] sm:-left-[43px] top-1.5 w-6 h-6 rounded-full bg-stone-600 border-4 border-stone-100 flex items-center justify-center text-[10px] text-white font-bold">2</span>
+          <div class="bg-white rounded-xl p-5 border border-stone-200 shadow-sm hover:shadow-md transition">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <span class="text-xs font-semibold px-2.5 py-1 rounded bg-stone-100 text-stone-600">12:00 - 13:30</span>
+              <span class="text-xs font-bold text-amber-700 bg-amber-100/70 px-2 py-0.5 rounded">토속 점심 식사</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-bold text-stone-900">
+              불국사 먹거리촌 맷돌순두부 찌개
+            </h4>
+            <p class="text-sm text-stone-600 mt-1.5 leading-relaxed">
+              불국사 인근은 순두부 골목으로 유명합니다. 담백하면서도 얼큰한 해물 맷돌순두부찌개와 고소한 촌두부 부침으로 따뜻하고 든든하게 점심 식사를 합니다.
+            </p>
+          </div>
+        </div>
+
+        <!-- Spot 3 -->
+        <div class="relative group">
+          <span class="absolute -left-[35px] sm:-left-[43px] top-1.5 w-6 h-6 rounded-full bg-stone-600 border-4 border-stone-100 flex items-center justify-center text-[10px] text-white font-bold">3</span>
+          <div class="bg-white rounded-xl p-5 border border-stone-200 shadow-sm hover:shadow-md transition">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <span class="text-xs font-semibold px-2.5 py-1 rounded bg-stone-100 text-stone-600">14:00 - 15:30</span>
+              <span class="text-xs font-bold text-stone-700 bg-stone-200 px-2 py-0.5 rounded">기념품 & 귀가</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-bold text-stone-900">
+              황남빵 / 이상복 경주빵 & 신경주역 이동
+            </h4>
+            <p class="text-sm text-stone-600 mt-1.5 leading-relaxed">
+              경주 여행의 필수 기념품인 팥 앙금 가득한 황남빵이나 찰보리빵을 포장 구매합니다. 짐을 픽업하여 신경주역(KTX) 또는 경주 시외버스터미널로 이동하여 2박 3일 일정을 마무리합니다.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- GYEONGJU WORLD GUIDE TAB -->
+    <div id="content-world-guide" class="tab-content hidden space-y-6">
+      
+      <!-- Banner -->
+      <div class="bg-gradient-to-r from-stone-900 to-amber-950 text-white p-6 rounded-2xl shadow-md">
+        <h3 class="text-xl font-bold flex items-center gap-2">
+          <i class="fa-solid fa-crown text-amber-400"></i> 경주월드 핵심 어트랙션 마스터 가이드
+        </h3>
+        <p class="text-stone-300 text-sm mt-1">
+          대기 시간은 줄이고 스릴은 극대화하는 프로 테마파커의 알짜 팁 모음입니다.
+        </p>
+      </div>
+
+      <!-- Top 4 Rides Card Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        
+        <!-- Draken -->
+        <div class="bg-white rounded-xl p-5 border border-stone-200 shadow-sm relative overflow-hidden">
+          <div class="flex justify-between items-start mb-2">
+            <div>
+              <span class="text-xs font-bold text-red-600 bg-red-50 px-2 py-0.5 rounded">극강 스릴 No.1</span>
+              <h4 class="text-lg font-bold text-stone-900 mt-1">드라켄 (Draken)</h4>
+            </div>
+            <div class="text-right">
+              <span class="text-xs text-stone-400">스릴도</span>
+              <p class="text-amber-500 font-bold text-sm">★★★★★</p>
+            </div>
+          </div>
+          <p class="text-xs sm:text-sm text-stone-600 leading-relaxed mb-3">
+            대한민국 최초 90도 수직 다이브 코스터. 63m 상공에서 잠시 멈춘 뒤 90도로 곤두박질치는 순간은 전율 그 자체입니다.
+          </p>
+          <div class="text-xs bg-stone-50 p-2.5 rounded-lg border border-stone-100 text-stone-600 space-y-1">
+            <p><strong>위치:</strong> 드라켄밸리 구역 안쪽</p>
+            <p><strong>공략:</strong> 개장 직후 첫 탑승 추천! 1열(맨 앞자리)은 시야 개방감이 미쳤고, 맨 뒷열은 훅 끌려 내려가는 중력가속도가 최고입니다.</p>
+          </div>
+        </div>
+
+        <!-- Klake -->
+        <div class="bg-white rounded-xl p-5 border border-stone-200 shadow-sm relative overflow-hidden">
+          <div class="flex justify-between items-start mb-2">
+            <div>
+              <span class="text-xs font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded">360도 회전 No.1</span>
+              <h4 class="text-lg font-bold text-stone-900 mt-1">크라크 (Klake)</h4>
+            </div>
+            <div class="text-right">
+              <span class="text-xs text-stone-400">스릴도</span>
+              <p class="text-amber-500 font-bold text-sm">★★★★★</p>
+            </div>
+          </div>
+          <p class="text-xs sm:text-sm text-stone-600 leading-relaxed mb-3">
+            거대한 진자 추가 360도로 회전하며 정상에서 거꾸로 정지하는 어트랙션. 하늘과 땅이 뒤집히는 무중력 상태를 경험합니다.
+          </p>
+          <div class="text-xs bg-stone-50 p-2.5 rounded-lg border border-stone-100 text-stone-600 space-y-1">
+            <p><strong>위치:</strong> 드라켄 맞은편 광장</p>
+            <p><strong>주의:</strong> 주머니 속 소지품(휴대폰, 안경, 차 키)은 탑승 전 반드시 무료 물품보관함에 보관하세요.</p>
+          </div>
+        </div>
+
+        <!-- Phaethon -->
+        <div class="bg-white rounded-xl p-5 border border-stone-200 shadow-sm relative overflow-hidden">
+          <div class="flex justify-between items-start mb-2">
+            <div>
+              <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">속도감 & 연속 루프</span>
+              <h4 class="text-lg font-bold text-stone-900 mt-1">파에톤 (Phaethon)</h4>
+            </div>
+            <div class="text-right">
+              <span class="text-xs text-stone-400">스릴도</span>
+              <p class="text-amber-500 font-bold text-sm">★★★★☆</p>
+            </div>
+          </div>
+          <p class="text-xs sm:text-sm text-stone-600 leading-relaxed mb-3">
+            발 받침대 없이 공중에 붕 뜬 채로 매달려 달리는 인버티드 코스터. 빠른 속도와 롤링 루프가 쉴 새 없이 몰아칩니다.
+          </p>
+          <div class="text-xs bg-stone-50 p-2.5 rounded-lg border border-stone-100 text-stone-600 space-y-1">
+            <p><strong>위치:</strong> 엑스존 (X-Zone) 입구</p>
+            <p><strong>공략:</strong> 대기열 테마 연출(그리스 신화)이 훌륭하여 기다리는 동안 지루하지 않습니다.</p>
+          </div>
+        </div>
+
+        <!-- Submarine Splash -->
+        <div class="bg-white rounded-xl p-5 border border-stone-200 shadow-sm relative overflow-hidden">
+          <div class="flex justify-between items-start mb-2">
+            <div>
+              <span class="text-xs font-bold text-teal-600 bg-teal-50 px-2 py-0.5 rounded">초대형 물폭풍</span>
+              <h4 class="text-lg font-bold text-stone-900 mt-1">섬머린스플래쉬</h4>
+            </div>
+            <div class="text-right">
+              <span class="text-xs text-stone-400">스릴도</span>
+              <p class="text-amber-500 font-bold text-sm">★★★★☆</p>
+            </div>
+          </div>
+          <p class="text-xs sm:text-sm text-stone-600 leading-relaxed mb-3">
+            국내 최고 높이 32m에서 물살을 가르며 낙하하는 초대형 워터코스터! 발생하는 물보라 높이만 20m가 넘습니다.
+          </p>
+          <div class="text-xs bg-stone-50 p-2.5 rounded-lg border border-stone-100 text-stone-600 space-y-1">
+            <p><strong>필수품:</strong> 전신 우비 착용 필수 (현장 구매 가능)</p>
+            <p><strong>꿀팁:</strong> 다리 위 포토존에서 떨어지는 배와 물보라를 배경으로 인생샷을 건질 수 있습니다.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Quick Pro-Tips Checklist -->
+      <div class="bg-stone-50 border border-stone-200 rounded-xl p-5">
+        <h4 class="font-bold text-stone-800 text-base mb-3 flex items-center gap-2">
+          <i class="fa-solid fa-lightbulb text-amber-500"></i> 경주월드 100% 즐기기 실전 체크리스트
+        </h4>
+        <ul class="space-y-2.5 text-sm text-stone-700">
+          <li class="flex items-start gap-2">
+            <i class="fa-solid fa-check text-green-600 mt-1"></i>
+            <span><strong>제휴 할인 사전 예매:</strong> 네이버 예약, 제휴 신용카드 할인(보통 50%), 소셜커머스를 통해 종일이용권을 최소 20~50% 미리 할인받아 구매하세요.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <i class="fa-solid fa-check text-green-600 mt-1"></i>
+            <span><strong>물품 보관함 활용:</strong> 정문 입구 및 드라켄 구역에 유/무료 코인 락커가 구비되어 있습니다. 가방은 가볍게!</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <i class="fa-solid fa-check text-green-600 mt-1"></i>
+            <span><strong>드레스코드:</strong> 끈 있는 운동화 착용 권장 (슬리퍼/쪼리는 고속 롤러코스터 탑승 시 벗겨질 수 있음).</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- BUDGET INFO TAB -->
+    <div id="content-budget-info" class="tab-content hidden space-y-6">
+      <div class="bg-white rounded-2xl p-6 border border-stone-200 shadow-sm">
+        <div class="flex items-center justify-between border-b border-stone-200 pb-4 mb-4">
+          <div>
+            <h3 class="text-lg font-bold text-stone-900">2인 기준 예상 경비 가이드</h3>
+            <p class="text-xs text-stone-500">교통편 및 숙소 등급에 따라 유동적일 수 있습니다.</p>
+          </div>
+          <span class="px-3 py-1 bg-amber-100 text-amber-800 text-xs font-bold rounded-full">2인 기준 예상: 약 55 ~ 70만원</span>
+        </div>
+
+        <div class="divide-y divide-stone-100 text-sm">
+          <div class="py-3 flex justify-between items-center">
+            <div>
+              <p class="font-bold text-stone-800">경주월드 자유이용권 (2인)</p>
+              <p class="text-xs text-stone-500">온라인 사전할인/제휴카드 적용 기준 (인당 약 30,000~35,000원)</p>
+            </div>
+            <span class="font-bold text-stone-900">약 65,000 ~ 70,000원</span>
+          </div>
+
+          <div class="py-3 flex justify-between items-center">
+            <div>
+              <p class="font-bold text-stone-800">숙박비 (2박)</p>
+              <p class="text-xs text-stone-500">보문단지 호텔 / 황리단길 감성 한옥 스테이 기준</p>
+            </div>
+            <span class="font-bold text-stone-900">약 200,000 ~ 280,000원</span>
+          </div>
+
+          <div class="py-3 flex justify-between items-center">
+            <div>
+              <p class="font-bold text-stone-800">식음료 및 카페 (2박 3일 총 7끼 + 디저트)</p>
+              <p class="text-xs text-stone-500">한우물회, 떡갈비, 순두부, 황리단길 카페, 길거리 간식</p>
+            </div>
+            <span class="font-bold text-stone-900">약 180,000 ~ 230,000원</span>
+          </div>
+
+          <div class="py-3 flex justify-between items-center">
+            <div>
+              <p class="font-bold text-stone-800">유적지 입장료 & 기타</p>
+              <p class="text-xs text-stone-500">천마총, 동궁과 월지(입장료 성인 3,000원), 경주월드 우비/물품보관</p>
+            </div>
+            <span class="font-bold text-stone-900">약 25,000원</span>
+          </div>
+
+          <div class="py-3 flex justify-between items-center">
+            <div>
+              <p class="font-bold text-stone-800">기념품 (황남빵 / 찰보리빵)</p>
+              <p class="text-xs text-stone-500">선물용 세트 기준</p>
+            </div>
+            <span class="font-bold text-stone-900">약 30,000 ~ 40,000원</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Checklist Section (Always Visible or Linked) -->
+    <section id="checklist-section" class="mt-12 pt-8 border-t border-stone-200">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h3 class="text-lg font-bold text-stone-900 flex items-center gap-2">
+            <i class="fa-solid fa-list-check text-amber-600"></i> 나의 여행 준비 & 정복 체크리스트
+          </h3>
+          <p class="text-xs text-stone-500">클릭하여 진행도를 직접 체크해 보세요.</p>
+        </div>
+        <div class="text-right">
+          <span id="progress-text" class="text-xs font-bold text-amber-600">0 / 8 완료</span>
+        </div>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="w-full bg-stone-200 h-2 rounded-full overflow-hidden mb-5">
+        <div id="progress-bar" class="bg-amber-600 h-full w-0 transition-all duration-300"></div>
+      </div>
+
+      <!-- Checklist Items -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="checklist-items">
+        
+        <label class="check-item flex items-center gap-3 p-3 bg-white rounded-xl border border-stone-200 shadow-sm cursor-pointer hover:bg-stone-50 transition">
+          <input type="checkbox" onchange="updateProgress()" class="w-4 h-4 rounded text-amber-600 accent-amber-600">
+          <span class="text-xs sm:text-sm font-medium text-stone-700">경주월드 자유이용권 사전 예매</span>
+        </label>
+
+        <label class="check-item flex items-center gap-3 p-3 bg-white rounded-xl border border-stone-200 shadow-sm cursor-pointer hover:bg-stone-50 transition">
+          <input type="checkbox" onchange="updateProgress()" class="w-4 h-4 rounded text-amber-600 accent-amber-600">
+          <span class="text-xs sm:text-sm font-medium text-stone-700">편한 운동화 & 여벌 양말 챙기기</span>
+        </label>
+
+        <label class="check-item flex items-center gap-3 p-3 bg-white rounded-xl border border-stone-200 shadow-sm cursor-pointer hover:bg-stone-50 transition">
+          <input type="checkbox" onchange="updateProgress()" class="w-4 h-4 rounded text-amber-600 accent-amber-600">
+          <span class="text-xs sm:text-sm font-medium text-stone-700">드라켄(Draken) 1열 탑승하기</span>
+        </label>
+
+        <label class="check-item flex items-center gap-3 p-3 bg-white rounded-xl border border-stone-200 shadow-sm cursor-pointer hover:bg-stone-50 transition">
+          <input type="checkbox" onchange="updateProgress()" class="w-4 h-4 rounded text-amber-600 accent-amber-600">
+          <span class="text-xs sm:text-sm font-medium text-stone-700">크라크(Klake) 360도 회전 버티기</span>
+        </label>
+
+        <label class="check-item flex items-center gap-3 p-3 bg-white rounded-xl border border-stone-200 shadow-sm cursor-pointer hover:bg-stone-50 transition">
+          <input type="checkbox" onchange="updateProgress()" class="w-4 h-4 rounded text-amber-600 accent-amber-600">
+          <span class="text-xs sm:text-sm font-medium text-stone-700">동궁과 월지 반영 야경 사진 찍기</span>
+        </label>
+
+        <label class="check-item flex items-center gap-3 p-3 bg-white rounded-xl border border-stone-200 shadow-sm cursor-pointer hover:bg-stone-50 transition">
+          <input type="checkbox" onchange="updateProgress()" class="w-4 h-4 rounded text-amber-600 accent-amber-600">
+          <span class="text-xs sm:text-sm font-medium text-stone-700">황리단길 십원빵 & 맛집 탐방</span>
+        </label>
+
+        <label class="check-item flex items-center gap-3 p-3 bg-white rounded-xl border border-stone-200 shadow-sm cursor-pointer hover:bg-stone-50 transition">
+          <input type="checkbox" onchange="updateProgress()" class="w-4 h-4 rounded text-amber-600 accent-amber-600">
+          <span class="text-xs sm:text-sm font-medium text-stone-700">불국사 다보탑 앞에서 인증샷</span>
+        </label>
+
+        <label class="check-item flex items-center gap-3 p-3 bg-white rounded-xl border border-stone-200 shadow-sm cursor-pointer hover:bg-stone-50 transition">
+          <input type="checkbox" onchange="updateProgress()" class="w-4 h-4 rounded text-amber-600 accent-amber-600">
+          <span class="text-xs sm:text-sm font-medium text-stone-700">황남빵 본점 기념품 선물 구매</span>
+        </label>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Toast Message Element (Never alert) -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none bg-stone-900 text-white text-xs sm:text-sm font-medium px-4 py-3 rounded-xl shadow-xl flex items-center gap-2">
+    <i class="fa-solid fa-circle-check text-green-400"></i>
+    <span id="toast-message">메시지 내용</span>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-stone-900 text-stone-400 py-8 border-t border-stone-800 text-center text-xs mt-auto">
+    <div class="max-w-4xl mx-auto px-4 space-y-2">
+      <p class="text-stone-300 font-semibold">경주 2박 3일 여행 & 경주월드 맞춤 일정표</p>
+      <p>즐겁고 안전한 경주 여행이 되시길 바랍니다. 어트랙션 운휴 여부는 경주월드 공식 홈페이지에서 당일 확인하세요.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Tab switching logic
+    function switchTab(tabId) {
+      // Hide all contents
+      document.querySelectorAll('.tab-content').forEach(el => {
+        el.classList.add('hidden');
+        el.classList.remove('block');
+      });
+
+      // Reset button styles
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('bg-amber-600', 'text-white', 'shadow-sm');
+        btn.classList.add('bg-white', 'text-stone-700');
+      });
+
+      // Show targeted content
+      const targetContent = document.getElementById('content-' + tabId);
+      if (targetContent) {
+        targetContent.classList.remove('hidden');
+        targetContent.classList.add('block');
+      }
+
+      // Highlight targeted button
+      const targetBtn = document.getElementById('tab-btn-' + tabId);
+      if (targetBtn) {
+        targetBtn.classList.add('bg-amber-600', 'text-white', 'shadow-sm');
+        targetBtn.classList.remove('bg-white', 'text-stone-700');
+      }
+    }
+
+    // Smooth scroll helper
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    // Checklist Progress Counter
+    function updateProgress() {
+      const checkboxes = document.querySelectorAll('#checklist-items input[type="checkbox"]');
+      const total = checkboxes.length;
+      let checkedCount = 0;
+
+      checkboxes.forEach(cb => {
+        if (cb.checked) checkedCount++;
+      });
+
+      const percentage = (checkedCount / total) * 100;
+      document.getElementById('progress-bar').style.width = percentage + '%';
+      document.getElementById('progress-text').textContent = `${checkedCount} / ${total} 완료`;
+
+      if (checkedCount === total) {
+        showToast('🎉 모든 여행 준비 및 미션을 달성했습니다!');
+      }
+    }
+
+    // Custom Toast function (No alert)
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-message');
+      toastMsg.textContent = msg;
+
+      toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 2500);
+    }
+
+    // Clipboard Copy Handler with fallback
+    function copyItinerary() {
+      const textToCopy = `[경주 2박 3일 여행 일정 (경주월드 포함)]
+■ 1일차: 신경주역/터미널 ➔ 황리단길 점심 & 감성카페 ➔ 대릉원(천마총/목련포토존) ➔ 첨성대 & 계림 ➔ 동궁과 월지(안압지) & 월정교 야경
+■ 2일차: 경주월드 오픈런(드라켄 ➔ 크라크 ➔ 파에톤 ➔ 섬머린스플래쉬 등 어트랙션 정복) ➔ 보문단지 한우물회/떡갈비 저녁
+■ 3일차: 불국사(다보탑/석가탑) ➔ 맷돌순두부 점심 ➔ 황남빵/찰보리빵 기념품 구매 ➔ 귀가`;
+
+      try {
+        const dummy = document.createElement('textarea');
+        document.body.appendChild(dummy);
+        dummy.value = textToCopy;
+        dummy.select();
+        document.execCommand('copy');
+        document.body.removeChild(dummy);
+        showToast('📋 일정이 클립보드에 복사되었습니다!');
+      } catch (err) {
+        showToast('복사에 실패했습니다. 직접 복사해주세요.');
+      }
+    }
+  </script>
+</body>
+</html>
